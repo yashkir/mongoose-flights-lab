@@ -1,0 +1,17 @@
+<%- include('../partials/header') %>
+
+<h1><%= title %></h1>
+
+<% if (flights.length) { %>
+  <% flights.forEach(flight => { %>
+    Airline: <%= flight.airline %> <br>
+    Airport: <%= flight.airline %> <br>
+    Flight Number: <%= flight.airline %> <br>
+    Departs at: <%= flight.airline %> <br>
+  <% }) %>
+<% } else { %>
+<p>No flights found...</p>
+<% } %>
+
+
+<%- include('../partials/footer') %>
