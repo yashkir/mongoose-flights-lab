@@ -4,10 +4,12 @@
 
 <% if (flights.length) { %>
   <% flights.forEach(flight => { %>
-    Airline: <%= flight.airline %> <br>
-    Airport: <%= flight.airline %> <br>
-    Flight Number: <%= flight.airline %> <br>
-    Departs at: <%= flight.airline %> <br>
+  <table class="flight">
+    <tr><td>Airline</td><td><%= flight.airline %></td>
+    <tr><td>Airport</td><td><%= flight.airport %></td>
+    <tr><td>Flight Number</td><td><%= flight.flightNo %></td>
+    <tr><td>Departs At</td><td><%= flight.departs %></td>
+  </table>
   <% }) %>
 <% } else { %>
 <p>No flights found...</p>
