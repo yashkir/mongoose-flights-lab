@@ -14,8 +14,15 @@ function create(req, res) {
   let newFlight = new Flight(req.body);
 
   newFlight.save(err => {
-    if (err) res.render('error');
-    res.redirect('/flights');
+    if (err) {
+      console.log(err);
+      res.render('flights/new', {
+        title: "Add Flight",
+        message: `Failed: ${err._message}`
+      });
+    } else {
+      res.redirect('/flights');
+    }
   });
 }
 

@@ -29,3 +29,9 @@ nav > a:hover {
 a {
   color: #00B7FF;
 }
+
+.error {
+  font-size: 2em;
+  margin: 1em;
+  color: red;
+}
