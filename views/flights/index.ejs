@@ -3,12 +3,16 @@
 <h1><%= title %></h1>
 
 <% if (flights.length) { %>
+<% flights.sort((a, b) => a.departs - b.departs) %>
   <% flights.forEach(flight => { %>
   <table class="flight">
     <tr><td>Airline</td><td><%= flight.airline %></td>
     <tr><td>Airport</td><td><%= flight.airport %></td>
     <tr><td>Flight Number</td><td><%= flight.flightNo %></td>
-    <tr><td>Departs At</td><td><%= flight.departs %></td>
+    <tr><td>Departs At</td>
+      <td <% if (flight.isLate()) { %> <%- 'class="departs-in-past"' %> <% } %>>
+        <%= flight.departs.toISOString().slice(0, 16).replace('T', ' ') %>
+      </td>
   </table>
   <% }) %>
 <% } else { %>

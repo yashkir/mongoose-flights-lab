@@ -22,10 +22,18 @@ const flightSchema = new mongoose.Schema({
     type: Date,
     default: function () {
       let date = new Date();
-      return date.setUTCFullYear(date.getUTCFullYear() + 1);
+      date.setFullYear(date.getFullYear() + 1);
+
+      return date;
     },
     required: true,
-  }
+  },
 });
+
+flightSchema.methods.isLate = function () {
+  if (this.departs < Date.now()) {
+    return true;
+  }
+};
 
 module.exports = mongoose.model('Flight', flightSchema)
