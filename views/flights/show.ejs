@@ -28,6 +28,7 @@
   </table>
 
   <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
+    <button type="submit">Add Destination</button>
     <select name="airport" id="airport" required>
       <option value="AUS">AUS</option>
       <option value="DFW">DFW</option>
@@ -37,7 +38,10 @@
     </select>
     <input type="datetime-local" name="arrival" id="arrival"
            value="<%= defaultDeparts %>" />
-    <button type="submit">Add Destination</button>
+  </form>
+
+  <form action="/flights/<%= flight.id %>?_method=DELETE" method="post">
+    <button type="submit">DELETE</button>
   </form>
 <% } else { %>
   <p>Flight not found...</p>

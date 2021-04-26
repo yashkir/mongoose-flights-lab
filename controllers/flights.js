@@ -56,6 +56,13 @@ function patch(req, res, next) {
 
 }
 
+function _delete(req, res) {
+  Flight.findOne({_id: req.params.id})
+    .then(flight => flight.remove())
+    .then(res.redirect('/flights'))
+    .catch(err => res.render('error', {error: err}));
+}
+
 function defaultDeparts() {
   /* Here we strip the ending of the ISO date so that it behaves
    * nicely with the date pickers. Later we need to re-add the 
@@ -73,4 +80,5 @@ module.exports = {
   create,
   show,
   patch,
+  delete: _delete,
 }
