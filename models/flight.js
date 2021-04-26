@@ -4,6 +4,7 @@ const destinationSchema = new mongoose.Schema({
   airport: {
     type: String,
     enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
+    required: true
   },
   arrival: Date,
 });

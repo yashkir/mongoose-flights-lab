@@ -45,9 +45,27 @@ function create(req, res) {
   });
 }
 
+function patch(req, res, next) {
+  Flight.findOne({_id: req.params.id}, (err, flight) => {
+    if (req.body.airport) {
+      flight.destinations.push(req.body);
+    }
+    
+    flight.save(err => { 
+      if (err) {
+        next(err);
+      } else {
+        res.redirect(`/flights/${flight.id}`);
+      }
+    });
+  });
+
+}
+
 module.exports = {
   index,
   new: _new,
   create,
   show,
+  patch,
 }
