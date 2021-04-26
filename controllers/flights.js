@@ -1,10 +1,7 @@
 var Flight = require("../models/flight");
 
 function index(req, res) {
-
   Flight.find({}, (err, flights) => {
-    let now = new Date();
-
     res.render('flights/index', { title: "All Flights", flights });
   });
 }
