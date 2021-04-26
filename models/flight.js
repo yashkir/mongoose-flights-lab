@@ -1,5 +1,13 @@
 var mongoose = require('mongoose');
 
+const destinationSchema = new mongoose.Schema({
+  airport: {
+    type: String,
+    enum: ['AUS', 'DFW', 'DEN', 'LAX', 'SAN'],
+  },
+  arrival: Date,
+});
+
 const flightSchema = new mongoose.Schema({
   airline: {
     type: String,
@@ -28,6 +36,7 @@ const flightSchema = new mongoose.Schema({
     },
     required: true,
   },
+  destinations: [destinationSchema],
 });
 
 flightSchema.methods.isLate = function () {

@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<h1><%= title %></h1>
+
+<% if (typeof flight !== 'undefined' && flight !== null) { %>
+  <table class="flight">
+    <tr><td>Airline</td><td><%= flight.airline %></td>
+    <tr><td>Airport</td><td><%= flight.airport %></td>
+    <tr><td>Flight Number</td><td><%= flight.flightNo %></td>
+    <tr><td>Departs At</td>
+      <td <% if (flight.isLate()) { %> <%- 'class="departs-in-past"' %> <% } %>>
+        <%= flight.departs.toISOString().slice(0, 16).replace('T', ' ') %>
+      </td>
+
+    <% if (typeof flight.destinations !== 'undefined' &&
+           flight.destinations.length) { %>
+      <%-` <tr> <td>Destinations</td> <td>`%>
+        <% flight.destinations.forEach(destination => { %>
+          <%= destination %>
+        <% }); %>
+      <%- `</td></tr>` %>
+    <% } %>
+
+  </table>
+<% } else { %>
+  <p>Flight not found...</p>
+<% } %>
+
+
+<%- include('../partials/footer') %>

@@ -6,6 +6,12 @@ function index(req, res) {
   });
 }
 
+function show(req, res) {
+  Flight.findOne({_id: req.params.id}, (err, flight) => {
+    res.render('flights/show', { title: "Flight Details", flight });
+  });
+}
+
 function _new(req, res) {
   let newFlight = new Flight();
   /* Here we strip the ending of the ISO date so that it behaves
@@ -43,4 +49,5 @@ module.exports = {
   index,
   new: _new,
   create,
+  show,
 }

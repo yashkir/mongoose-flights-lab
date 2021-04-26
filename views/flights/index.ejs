@@ -13,6 +13,7 @@
       <td <% if (flight.isLate()) { %> <%- 'class="departs-in-past"' %> <% } %>>
         <%= flight.departs.toISOString().slice(0, 16).replace('T', ' ') %>
       </td>
+      <tr><td><a href="/flights/<%= flight.id %>">Details</a><td></tr>
   </table>
   <% }) %>
 <% } else { %>
