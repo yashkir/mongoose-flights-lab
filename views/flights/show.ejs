@@ -30,11 +30,11 @@
   <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
     <button type="submit">Add Destination</button>
     <select name="airport" id="airport" required>
-      <option value="AUS">AUS</option>
-      <option value="DFW">DFW</option>
-      <option value="DEN">DEN</option>
-      <option value="LAX">LAX</option>
-      <option value="SAN">SAN</option>
+    <% airports.forEach(airport => { %>
+    <% if (flight.destinations.findIndex(d => d.airport == airport) === -1) { %>
+        <option value="<%= airport %>"><%= airport %></option>
+      <% } %>
+    <% }); %>
     </select>
     <input type="datetime-local" name="arrival" id="arrival"
            value="<%= defaultDeparts %>" />
