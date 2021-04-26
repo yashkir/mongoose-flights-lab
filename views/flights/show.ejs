@@ -19,32 +19,26 @@
           <%= destination.airport %>
           <% if (destination.arrival) { %>
             at
-            <%= destination.arrival %>
+            <%= destination.arrival.toISOString() %>
           <% } %>
           <br>
         <% }); %>
       <%- `</td></tr>` %>
     <% } %>
-
-    <tr>
-      <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
-      <td>
-        <select name="airport" id="airport" required>
-          <option value="AUS">AUS</option>
-          <option value="DFW">DFW</option>
-          <option value="DEN">DEN</option>
-          <option value="LAX">LAX</option>
-          <option value="SAN">SAN</option>
-        </select>
-        <input type="datetime-local" name="arrival" id="arrival"/>
-      </td>
-      <td>
-        <button type="submit">Add Destination</button>
-      </td>
-      </form>
-    </tr>
-
   </table>
+
+  <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
+    <select name="airport" id="airport" required>
+      <option value="AUS">AUS</option>
+      <option value="DFW">DFW</option>
+      <option value="DEN">DEN</option>
+      <option value="LAX">LAX</option>
+      <option value="SAN">SAN</option>
+    </select>
+    <input type="datetime-local" name="arrival" id="arrival"
+           value="<%= defaultDeparts %>" />
+    <button type="submit">Add Destination</button>
+  </form>
 <% } else { %>
   <p>Flight not found...</p>
 <% } %>

@@ -43,7 +43,7 @@ table.flight {
   grid-template-columns: minmax(auto, 10rem) minmax(auto, 15rem);
 }
 
-.add-flight-form > input, select {
+.add-flight-form > input, .add-flight-form > select {
   padding: 0.5em;
 }
 

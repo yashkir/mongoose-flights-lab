@@ -8,24 +8,18 @@ function index(req, res) {
 
 function show(req, res) {
   Flight.findOne({_id: req.params.id}, (err, flight) => {
-    res.render('flights/show', { title: "Flight Details", flight });
+    res.render('flights/show', { title: "Flight Details", flight, defaultDeparts: defaultDeparts() });
   });
 }
 
 function _new(req, res) {
-  let newFlight = new Flight();
-  /* Here we strip the ending of the ISO date so that it behaves
-   * nicely with the date pickers. Later we need to re-add the 
-   * GMT designation 'Z', otherwise the time we input will be
-   * interpreted in the local timezone of the SERVER (oops) */
-  let defaultDeparts = newFlight.departs.toISOString().slice(0, 16); 
-
-  res.render('flights/new', { title: "Add Flight", defaultDeparts});
+  res.render('flights/new', { title: "Add Flight", defaultDeparts: defaultDeparts()});
 }
 
 function create(req, res) {
   /* Here we add the 'Z'ulu (UTC) timezone designation so that
    * the time is not treated as in our local time zone. */
+  console.log(req.body.departs);
   if (req.body.departs[req.body.departs.length - 1] !== 'Z') {
     req.body.departs = req.body.departs + 'Z';
   }
@@ -60,6 +54,17 @@ function patch(req, res, next) {
     });
   });
 
+}
+
+function defaultDeparts() {
+  /* Here we strip the ending of the ISO date so that it behaves
+   * nicely with the date pickers. Later we need to re-add the 
+   * GMT designation 'Z', otherwise the time we input will be
+   * interpreted in the local timezone of the SERVER (oops) */
+  let newFlight = new Flight();
+  let defaultDeparts = newFlight.departs.toISOString().slice(0, 16); 
+
+  return defaultDeparts;
 }
 
 module.exports = {
