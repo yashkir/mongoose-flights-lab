@@ -4,7 +4,7 @@
 
 <form action="/flights/<%= flightId %>/tickets" method="post" class="add-flight-form">
   <label for="seat">Seat</label>
-  <input type="text" name="seat" id="seat" required pattern="[A-F][1-9]\d?">
+  <input type="text" name="seat" id="seat" title="A1 to F99" required pattern="[A-F][1-9]\d?">
   <label for="price">Price</label>
   <input type="number" name="price" id="price" required>
   <button type="submit">Add Ticket</button>
