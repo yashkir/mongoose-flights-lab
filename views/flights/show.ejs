@@ -41,27 +41,31 @@
     <% } %>
   </table>
 
-  <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
-    <button type="submit">Add Destination</button>
-    <select name="airport" id="airport" required>
-    <% airports.forEach(airport => { %>
-    <% if (flight.destinations.findIndex(d => d.airport == airport) === -1) { %>
-        <option value="<%= airport %>"><%= airport %></option>
-      <% } %>
-    <% }); %>
-    </select>
-    <input type="datetime-local" name="arrival" id="arrival"
-           value="<%= defaultDeparts %>" />
-  </form>
+  <div class="flight-control-btns">
+    <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
+      <button type="submit">Add Destination</button>
+      to
+      <select name="airport" id="airport" required>
+      <% airports.forEach(airport => { %>
+      <% if (flight.destinations.findIndex(d => d.airport == airport) === -1) { %>
+          <option value="<%= airport %>"><%= airport %></option>
+        <% } %>
+      <% }); %>
+      </select>
+      at
+      <input type="datetime-local" name="arrival" id="arrival"
+             value="<%= defaultDeparts %>" />
+    </form>
 
-  <form action="/flights/<%= flight.id %>?_method=DELETE" method="post">
-    <button type="submit">DELETE</button>
-  </form>
+    <a href="/flights/<%= flight.id %>/tickets/new"><button>Add a ticket...</button></a>
+
+    <form action="/flights/<%= flight.id %>?_method=DELETE" method="post">
+      <button type="submit">DELETE</button>
+    </form>
+  </div>
+
 <% } else { %>
   <p>Flight not found...</p>
 <% } %>
-
-<a href="/flights/<%= flight.id %>/tickets/new"><button>Add a ticket</button></a>
-
 
 <%- include('../partials/footer') %>

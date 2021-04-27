@@ -66,3 +66,12 @@ table.flight {
 .ticket-delete-form {
   display: inline;
 }
+
+.flight-control-btns > * {
+  margin: 1em;
+}
+
+.flight-control-btns button {
+  padding: 0.25em;
+}
+
