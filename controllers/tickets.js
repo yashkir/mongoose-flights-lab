@@ -17,8 +17,20 @@ function create(req, res, next) {
     });
 }
 
-function _delete(req, res) {
-  res.send("delete");
+function _delete(req, res, next) {
+  let flightId;
+
+  Ticket.findById(req.params.id)
+    .then(ticket => {
+      flightId = ticket.flight;
+      ticket.remove();
+    })
+    .then(() => {
+      res.redirect(`/flights/${flightId}`);
+    })
+    .catch(err => {
+      if (err) next(err);
+    });
 }
 
 module.exports = {

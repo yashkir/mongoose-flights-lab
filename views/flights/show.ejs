@@ -26,11 +26,15 @@
       <%- `</td></tr>` %>
     <% } %>
 
-    <% if (tickets) { %>
+    <% if (tickets.length) { %>
       <%-` <tr><td>Tickets</td> <td>`%>
         <% tickets.forEach(ticket => { %>
           <%= ticket.seat %> for
           <%= ticket.price %>
+          <form action="/tickets/<%= ticket.id %>?_method=DELETE" method="post"
+            class="ticket-delete-form">
+            <button type="submit">X</button>
+          </form>
           <br>
         <% }); %>
       </td></tr>

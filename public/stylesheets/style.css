@@ -62,3 +62,7 @@ table.flight {
   margin: 1em;
   color: red;
 }
+
+.ticket-delete-form {
+  display: inline;
+}
