@@ -1,4 +1,6 @@
 var Flight = require("../models/flight");
+var Ticket = require("../models/ticket");
+
 var modelConfig = require('../models/config');
 
 function index(req, res) {
@@ -9,11 +11,14 @@ function index(req, res) {
 
 function show(req, res) {
   Flight.findOne({_id: req.params.id}, (err, flight) => {
-    res.render('flights/show', {
-      title: "Flight Details",
-      flight,
-      defaultDeparts: defaultDeparts(),
-      airports: modelConfig.airports,
+    Ticket.find({flight: flight._id}, (err, tickets) => {
+      res.render('flights/show', {
+        title: "Flight Details",
+        flight,
+        tickets,
+        defaultDeparts: defaultDeparts(),
+        airports: modelConfig.airports,
+      });
     });
   });
 }

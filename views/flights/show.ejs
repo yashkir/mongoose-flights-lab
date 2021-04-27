@@ -25,6 +25,16 @@
         <% }); %>
       <%- `</td></tr>` %>
     <% } %>
+
+    <% if (tickets) { %>
+      <%-` <tr><td>Tickets</td> <td>`%>
+        <% tickets.forEach(ticket => { %>
+          <%= ticket.seat %> for
+          <%= ticket.price %>
+          <br>
+        <% }); %>
+      </td></tr>
+    <% } %>
   </table>
 
   <form action="/flights/<%= flight.id %>?_method=PATCH" method="post">
@@ -46,6 +56,8 @@
 <% } else { %>
   <p>Flight not found...</p>
 <% } %>
+
+<a href="/flights/<%= flight.id %>/tickets/new"><button>Add a ticket</button></a>
 
 
 <%- include('../partials/footer') %>
