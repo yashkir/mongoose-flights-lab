@@ -63,8 +63,7 @@ function patch(req, res, next) {
 }
 
 function _delete(req, res) {
-  Flight.findOne({_id: req.params.id})
-    .then(flight => flight.remove())
+  Flight.deleteOne({_id: req.params.id})
     .then(res.redirect('/flights'))
     .catch(err => res.render('error', {error: err}));
 }
