@@ -30,13 +30,6 @@ a {
   color: #00B7FF;
 }
 
-table.flight {
-  padding: 0.5em;
-  margin-bottom: 1em;
-  border: 3px solid lightblue;;
-  border-radius: 5px;
-}
-
 .add-flight-form {
   display: grid;
   grid-gap: 10px;
@@ -75,3 +68,15 @@ table.flight {
   padding: 0.25em;
 }
 
+table.flight {
+  padding: 0.5em;
+  margin: 1em;
+  border: 3px solid lightblue;;
+  border-radius: 5px;
+}
+
+.flights-container {
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+}

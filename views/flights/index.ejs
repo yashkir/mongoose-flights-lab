@@ -3,6 +3,7 @@
 <h1><%= title %></h1>
 
 <% if (flights.length) { %>
+<div class="flights-container">
 <% flights.sort((a, b) => a.departs - b.departs) %>
   <% flights.forEach(flight => { %>
   <table class="flight">
@@ -16,6 +17,7 @@
       <tr><td><a href="/flights/<%= flight.id %>">Details</a><td></tr>
   </table>
   <% }) %>
+</div>
 <% } else { %>
 <p>No flights found...</p>
 <% } %>
